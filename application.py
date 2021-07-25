@@ -33,7 +33,7 @@ def index():
         except:
             db.session.rollback()
         return render_template('thanks.html', notes=form1.dbNotes.data)
-        
+
     if request.method == 'POST' and form2.validate():
         try:   
             num_return = int(form2.numRetrieve.data)
@@ -44,8 +44,10 @@ def index():
         except:
             db.session.rollback()
         return render_template('results.html', results=query_db, num_return=num_return)                
-    
+
     return render_template('index.html', form1=form1, form2=form2)
+
 
 if __name__ == '__main__':
     application.run(host='0.0.0.0')
+    print(application.config.SQLALCHEMY_TRACK_MODIFICATIONS)
