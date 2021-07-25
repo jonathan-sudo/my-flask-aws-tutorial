@@ -47,5 +47,3 @@ def index():
 if __name__ == '__main__':
     print(application.config)
     application.run(host='0.0.0.0')
-    db.drop_all()
-    db.create_all()
