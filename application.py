@@ -8,10 +8,9 @@ Step-by-step tutorial: https://medium.com/@rodkey/deploying-a-flask-application-
 """
 
 from flask import render_template, request
-from application import db
+from application import db, application
 from application.models import Data
 from application.forms import EnterDBInfo, RetrieveDBInfo
-from application import application
 
 
 @application.route('/', methods=['GET', 'POST'])
@@ -21,6 +20,7 @@ def index():
     form2 = RetrieveDBInfo(request.form)
 
     if request.method == 'POST' and form1.validate():
+
         data_entered = Data(notes=form1.dbNotes.data)
         try:
             db.session.add(data_entered)
@@ -45,5 +45,7 @@ def index():
 
 
 if __name__ == '__main__':
+    print(application.config)
     application.run(host='0.0.0.0')
-    print(application.config.SQLALCHEMY_TRACK_MODIFICATIONS)
+    db.drop_all()
+    db.create_all()
