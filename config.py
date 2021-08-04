@@ -3,7 +3,7 @@ import os
 # The other elements are the same as used in the tutorial
 # format: (user):(password)@(db_identifier).amazonaws.com:3306/(db_name)
 host = "mysql-test.cifxtwfwpb84.us-east-2.rds.amazonaws.com"
-port = 3306
+port = "3306"
 dbname = "mysql-test"
 user = "admin"
 password = "mysql-test"
